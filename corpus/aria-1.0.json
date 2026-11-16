@@ -1,0 +1,25 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2"
+  ],
+  "credentialStatus": {
+    "status": "active"
+  },
+  "credentialSubject": {
+    "id": "did:example:agent-abc123",
+    "policy": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  },
+  "detached_signature": {
+    "alg": "Ed25519",
+    "kid": "rfc8032-test2-key",
+    "value_hex": "d60103271e342a60f559b5ac1c57103bdd35d5bc49a0acdd808b0adb6336af69b82888894f60a339753028952326b161ff1ce577a78349d9e0fcbcd7df04050e"
+  },
+  "issuer": "did:example:tlf",
+  "proof": {
+    "type": "DataIntegrityProof"
+  },
+  "type": [
+    "VerifiableCredential"
+  ],
+  "validFrom": "2026-11-16T00:00:00Z"
+}

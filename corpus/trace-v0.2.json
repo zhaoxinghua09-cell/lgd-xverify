@@ -1,0 +1,27 @@
+{
+  "data_class": "internal",
+  "detached_signature": {
+    "alg": "Ed25519",
+    "kid": "rfc8032-test2-key",
+    "value_hex": "038ef99bdab7419b8f4637f4d078b09a4bba535606b73cb933748ffeef39b4304b3d24231a3ca98dcd929a717aa77abfab881614ff7b5a68c2b514b81f338402"
+  },
+  "eat_profile": "tag:agentrust-io.com,2026:trace-v0.2",
+  "iat": 1763366400,
+  "model": {
+    "model_id": "m-1",
+    "provider": "example-labs",
+    "version": "1.2",
+    "weights_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "policy": {
+    "bundle_hash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "enforcement_mode": "enforce"
+  },
+  "runtime": {
+    "measurement": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "platform": "software-only"
+  },
+  "signature": "es256:key-1:c2gn",
+  "subject": "did:example:agent-abc123",
+  "transparency": "scitt:receipt:example"
+}

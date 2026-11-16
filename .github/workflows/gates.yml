@@ -1,0 +1,47 @@
+name: gates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gates:
+    # 3.9 is the floor claimed in INSTALL.md; 3.12 is what CI actually runs on.
+    # Both are jobs, so a floor claim that stops being true fails the gate.
+    name: gates · python ${{ matrix.python }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.9", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: ed25519 vectors (RFC 8032 §7.1)
+        run: python lgd_ed25519.py --selftest
+      - name: verdict selftest
+        run: python lgd_xverify.py --selftest
+      - name: unit tests
+        run: python -m unittest discover -s tests -v
+      - name: corpus reproduces its own verdict
+        run: python examples/gen_corpus.py --check
+
+  negative-control:
+    # A gate that cannot fail is not a gate. This job fails the build if the
+    # verifier reports PASS on a corpus it should reject.
+    name: negative control · the verifier must be able to fail
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: tampered payload must not be PASS
+        run: python tests/negative_control_must_fail.py

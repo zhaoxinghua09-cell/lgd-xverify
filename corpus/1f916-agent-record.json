@@ -1,0 +1,24 @@
+{
+  "detached_signature": {
+    "alg": "Ed25519",
+    "kid": "rfc8032-test2-key",
+    "value_hex": "8f3bde5aa9de18571e83190dbb67bad5303358e7f838b091b7f1d65403a292ac7d85ded2855878f0dcc191912a9755748cf36ed4cd6335a1a5e3d81797f79b06"
+  },
+  "dossier": {
+    "agent_handle": "did:example:agent-abc123",
+    "checkpoint": {
+      "tree_size": 42,
+      "witnesses": [
+        "w1",
+        "w2"
+      ]
+    },
+    "keys": [
+      {
+        "alg": "Ed25519",
+        "kid": "k1"
+      }
+    ],
+    "signature": "1f916.record.v1:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  }
+}
