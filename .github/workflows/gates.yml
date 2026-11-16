@@ -11,14 +11,23 @@ permissions:
 
 jobs:
   gates:
-    # 3.9 is the floor claimed in INSTALL.md; 3.12 is what CI actually runs on.
-    # Both are jobs, so a floor claim that stops being true fails the gate.
+    # 3.9 is the floor claimed in INSTALL.md, 3.12 is what CI runs on. Both are
+    # jobs, so a floor claim that stops being true fails the gate.
+    #
+    # The 3.9 job pins ubuntu-22.04 on purpose: ubuntu-latest no longer ships
+    # Python 3.9, and setup-python fails at step 3 rather than at the test step.
+    # That failure mode is silent about the code and loud about the environment,
+    # which is how a floor claim survives untested — so the image is pinned.
     name: gates · python ${{ matrix.python }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        python: ["3.9", "3.12"]
+        include:
+          - python: "3.9"
+            os: ubuntu-22.04
+          - python: "3.12"
+            os: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

@@ -26,6 +26,7 @@
 - **Corpus is frozen.** Amend a rule and re-derive; never edit a fixture to make a case pass.
 - **`PASS` is load-bearing.** Any change that widens it needs a negative control proving the old failure still fails.
 - **The RFC vectors in `lgd_ed25519.py` are the root of trust.** If a "fix" makes a vector fail, the fix is wrong, not the vector.
+- **Python 3.9 runs on `ubuntu-22.04`, not `ubuntu-latest`.** The first CI run "failed" at `actions/setup-python` because `ubuntu-latest` no longer ships 3.9 — the tests never executed. A gate that dies in setup looks identical to a gate that dies in a test; the pinned image is what makes the floor claim testable at all.
 
 ## What has not been done
 
